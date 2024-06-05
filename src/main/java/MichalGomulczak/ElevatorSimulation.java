@@ -16,9 +16,11 @@ public class ElevatorSimulation extends JFrame {
     private Timer timer;
     private final List<ElevatorPanel> elevatorPanels;
     private List<String> csvEntries;
+    private int simulationSpeed;
 
-    public ElevatorSimulation() {
+    public ElevatorSimulation(int simulationSpeed) {
         this.elevatorPanels = new ArrayList<>();
+        this.simulationSpeed = simulationSpeed;
         setTitle("Elevator Simulation");
         setSize(900, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -144,11 +146,11 @@ public class ElevatorSimulation extends JFrame {
 
         int finalRequests = requests;
         if (isManual) {
-            timer = new Timer(60, e -> updateManualSimulation());
+            timer = new Timer(simulationSpeed, e -> updateManualSimulation());
             timer.start();
         }
         else {
-            timer = new Timer(60, e -> updateSimulation(finalRequests));
+            timer = new Timer(simulationSpeed, e -> updateSimulation(finalRequests));
             timer.start();
         }
     }

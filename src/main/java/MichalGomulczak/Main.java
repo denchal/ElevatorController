@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args){
-        SwingUtilities.invokeLater(() -> new ElevatorSimulation().setVisible(true));
+        int simulationSpeed = 100;
+        SwingUtilities.invokeLater(() -> new ElevatorSimulation(simulationSpeed).setVisible(true));
     }
 }
