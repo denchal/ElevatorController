@@ -3,7 +3,7 @@
 ### Przyjęte podejście:
 Dwa typy zapytań: Request oraz InteriorRequest <br>
 Request jest zapytaniem zewnętrznym i odpowiada wciśnięciu przycisku chęci jazdy w górę lub w dół na danym piętrze. <br>
-InteriorRequest jest zapytaniem wewnętrznym, kierowanym do konkretnej windy i wyrażający chęć jazdy na konkretne piętro. <br>
+InteriorRequest jest zapytaniem wewnętrznym, kierowanym do konkretnej windy i wyraża chęć jazdy na konkretne piętro. <br>
 
 Kontroler windy stara się rozdzielić pracę wind tak, aby zminimalizować czas oczekiwania przez klienta na przybycie windy po otrzymaniu zapytania typu Request. <br>
 Robi to poprzez znalezienie windy, która jest najbliżej piętra przywołującego, z zachowaniem pewnych reguł:
