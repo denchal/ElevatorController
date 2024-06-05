@@ -44,6 +44,11 @@ Kolor windy reprezentuje jej stan: <br>
 </ul>
 Domyślnie krok symulacji jest ustawiony na 100ms, a czas oczekiwania na piętrze na 300ms. Te wartości mogą się zmieniać w zależności od ilości pięter oraz wind.
 
+### Obsługa pliku CSV:
+Dodałem obsługę plików CSV jako plików z danymi. Powinny one zawierać takie same zapytania jak wpisywanie ręczne, oddzielone przecinkami np.: <br>
+```U 5,0 3,D 7,D 3,...``` <br>
+Umożliwiają one odgrywanie "scenariuszy" ruchów wind. Każde wejście jest czytane z pliku co stały krok czasowy (aktualnie 333ms) co jest dużo szybsze niż wpisywanie ręczne.
+
 ### Obsługa błędnych wejść wprowadzonych przez użytkownika:
 Jeżeli użytkownik wprowadzi błędne dane w którymkolwiek z 2 pierwszych pól odpowiedzialnych za parametry symulacji to symulacja nie wystartuje. <br>
 W przypadku błędnie wprowadzonego pola ilości automatycznych zapytań na iterację tylko symulacja manualna wystartuje, a automatyczna nie. <br>
