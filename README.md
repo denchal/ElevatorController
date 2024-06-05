@@ -66,3 +66,6 @@ Testowałem również dodatkową optymalizację w postaci liczenia ilości zatrz
   <li>Otwórz w wybranym przez siebie IDE (InteliJ na pewno działa). Projekt jest napisany w Java 21</li>
   <li>Uruchom Main</li>
 </ul>
+
+### Kilka zrzutów ekranu:
+
