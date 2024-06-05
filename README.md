@@ -44,6 +44,11 @@ Kolor windy reprezentuje jej stan: <br>
 </ul>
 Domyślnie krok symulacji jest ustawiony na 100ms, a czas oczekiwania na piętrze na 300ms. Te wartości mogą się zmieniać w zależności od ilości pięter oraz wind.
 
+#### Obsługa błędnych wejść wprowadzonych przez użytkownika:
+Jeżeli użytkownik wprowadzi błędne dane w którymkolwiek z 2 pierwszych pól odpowiedzialnych za parametry symulacji symulacja nie wystartuje. <br>
+W przypadku błędnie wprowadzonego pola ilości automatycznych zapytań na iterację tylko symulacja manualna wystartuje, a automatyczna nie. <br>
+Błędnie wprowadzone manualne zapytanie jest odrzucane - pole nie jest zerowane.
+
 
 ### Uruchomienie projektu:
 <ul>
