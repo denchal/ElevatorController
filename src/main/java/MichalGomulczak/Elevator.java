@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public class Elevator {
+
     private final int elevatorId;
     private int currentFloor;
     private final List<Integer> route;
@@ -42,6 +43,10 @@ public class Elevator {
 
     public int getCurrentDestination() {
         return currentDestination;
+    }
+
+    public boolean isBeingBoarded() {
+        return isBeingBoarded;
     }
 
     @Override
@@ -119,9 +124,5 @@ public class Elevator {
                 timeWaited++;
             }
         }
-    }
-
-    public boolean isBeingBoarded() {
-        return isBeingBoarded;
     }
 }

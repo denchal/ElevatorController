@@ -13,14 +13,14 @@ public class CSVHandler implements Runnable{
     public void run() {
         List<String> inputs = elevatorSimulation.getCsvEntries();
         elevatorSimulation.setCSVInput(null);
-        long expectedtime = System.currentTimeMillis();
+        long expectedTime = System.currentTimeMillis();
         if (inputs != null) {
             for (String input : inputs) {
                 elevatorSimulation.handleManualInput(input);
-                while(System.currentTimeMillis() < expectedtime){
-                    //Empty Loop
+                while(System.currentTimeMillis() < expectedTime){
+                    //Waiting 333 ms
                 }
-                expectedtime += 333;
+                expectedTime += 333;
             }
         }
     }

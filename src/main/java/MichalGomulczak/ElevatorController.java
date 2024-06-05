@@ -47,6 +47,13 @@ public class ElevatorController {
         }
     }
 
+    public void handleInElevatorInputs(List<InteriorRequest> input) {
+        for (InteriorRequest request : input) {
+            Elevator elevator = elevators.get(request.elevator());
+            elevator.addToRoute(request.floor());
+        }
+    }
+
     private int[] getFloorCounts() {
         int[] counts = new int[maxFloor+1];
         for (Elevator elevator : elevators) {
@@ -75,13 +82,6 @@ public class ElevatorController {
     public void step() {
         for (Elevator elevator : elevators) {
             elevator.step();
-        }
-    }
-
-    public void handleInElevatorInputs(List<InteriorRequest> input) {
-        for (InteriorRequest request : input) {
-            Elevator elevator = elevators.get(request.elevator());
-            elevator.addToRoute(request.floor());
         }
     }
 }

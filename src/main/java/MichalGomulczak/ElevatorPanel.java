@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 class ElevatorPanel extends JPanel {
+
     private int currentFloor;
     private final int maxFloor;
     private final Elevator elevator;
