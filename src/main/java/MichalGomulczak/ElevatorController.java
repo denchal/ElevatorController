@@ -89,4 +89,12 @@ public class ElevatorController {
             elevator.step();
         }
     }
+
+    public List<String> status() {
+        List<String> status = new ArrayList<>();
+        for (Elevator elevator : elevators) {
+            status.add(elevator.toString());
+        }
+        return status;
+    }
 }

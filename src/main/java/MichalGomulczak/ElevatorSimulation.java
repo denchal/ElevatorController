@@ -17,10 +17,12 @@ public class ElevatorSimulation extends JFrame {
     private final List<ElevatorPanel> elevatorPanels;
     private List<String> csvEntries;
     private int simulationSpeed;
+    private int numOfSteps;
 
     public ElevatorSimulation(int simulationSpeed) {
         this.elevatorPanels = new ArrayList<>();
         this.simulationSpeed = simulationSpeed;
+        this.numOfSteps = 0;
         setTitle("Elevator Simulation");
         setSize(900, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -177,6 +179,11 @@ public class ElevatorSimulation extends JFrame {
             ElevatorPanel panel = elevatorPanels.get(i);
             panel.setCurrentFloor(elevator.getCurrentFloor());
         }
+
+        if (numOfSteps%25 == 24) {
+            System.out.println(elevatorController.status());
+        }
+        numOfSteps++;
     }
 
     private void updateManualSimulation() {
@@ -189,5 +196,10 @@ public class ElevatorSimulation extends JFrame {
             ElevatorPanel panel = elevatorPanels.get(i);
             panel.setCurrentFloor(elevator.getCurrentFloor());
         }
+
+        if (numOfSteps%25 == 24) {
+            System.out.println(elevatorController.status());
+        }
+        numOfSteps++;
     }
 }
