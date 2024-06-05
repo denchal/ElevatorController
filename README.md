@@ -37,10 +37,10 @@ Na samym dole znajduje się pole tekstowe służące do obsługi trybu manualneg
 Na górze ekranu po uruchomieniu symualcji będzie wyświetlała się tablica, pokazująca aktualny stan każdej z wind oraz piętro na którym się znajduje. <br>
 Kolor windy reprezentuje jej stan: <br>
 <ul>
-  <li>zielony to winda jadąca do góry, <br></li>
-  <li>czerwony to winda jadąca w dół, <br></li>
-  <li>żółty to winda która aktualnie ma otwarte drzwi i pasażerowie mogą wsiadać i wysiadać, <br></li>
-  <li>niebieski to winda która nie ma aktualnie zajęcia.<br></li>
+  <li>${\color{green}zielony}$ to winda jadąca do góry, <br></li>
+  <li>${\color{red}czerwony}$ to winda jadąca w dół, <br></li>
+  <li>${\color{yellow}żółty}$ to winda która aktualnie ma otwarte drzwi i pasażerowie mogą wsiadać i wysiadać, <br></li>
+  <li>${\color{blue}niebieski}$ to winda która nie ma aktualnie zajęcia.<br></li>
 </ul>
 Domyślnie krok symulacji jest ustawiony na 100ms, a czas oczekiwania na piętrze na 300ms. Te wartości mogą się zmieniać w zależności od ilości pięter oraz wind.
 
