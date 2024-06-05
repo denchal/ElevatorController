@@ -63,7 +63,7 @@ Testowałem również dodatkową optymalizację w postaci liczenia ilości zatrz
 ### Uruchomienie projektu:
 <ul>
   <li>Sklonuj repozytorium</li>
-  <li>Otwórz w wybranym przez siebie IDE (InteliJ na pewno działa). Projekt jest napisany w Java 21</li>
+  <li>Otwórz w wybranym przez siebie IDE (InteliJ na pewno działa). Projekt jest napisany w Oracle OpenJDK 21, ale można go uruchomić używając Oracle OpenJDK 17</li>
   <li>Uruchom Main</li>
 </ul>
 Zmiana prędkości symulacji jest możliwa poprzez zmianę wartości parametru simulationSpeed w klasie Main.
