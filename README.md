@@ -44,11 +44,15 @@ Kolor windy reprezentuje jej stan: <br>
 </ul>
 Domyślnie krok symulacji jest ustawiony na 100ms, a czas oczekiwania na piętrze na 300ms. Te wartości mogą się zmieniać w zależności od ilości pięter oraz wind.
 
-#### Obsługa błędnych wejść wprowadzonych przez użytkownika:
+### Obsługa błędnych wejść wprowadzonych przez użytkownika:
 Jeżeli użytkownik wprowadzi błędne dane w którymkolwiek z 2 pierwszych pól odpowiedzialnych za parametry symulacji symulacja nie wystartuje. <br>
 W przypadku błędnie wprowadzonego pola ilości automatycznych zapytań na iterację tylko symulacja manualna wystartuje, a automatyczna nie. <br>
 Błędnie wprowadzone manualne zapytanie jest odrzucane - pole nie jest zerowane.
 
+### Złożoność i optymalizacja:
+Algorytm w każdej iteracji wykonuje (ilość wind)x(ilość aktualnych stopów i-tej windy)x(ilość zapytań w iteracji) kroków co w zupełności wystarcza na obsłużenie 16, a nawet większej ilości wind.
+Warto zauważyć, że ilość kroków nie jest zależna od ilości pięter, co umożliwia dobre skalowanie jeżeli chodzi o wysokość budynku.
+Prawdopodobnie istnieją lepsze algorytmy optymalizujące kolejkowanie wind - dobrym pomysłem w rzeczywistym scenariuszu mogłoby być użycie Constraint Programming na przykład w języku MiniZinc, z uwagi na niewielką ilość danych do przetworzenia algorytm szybko znalazłby najoptymalniejsze rozwiązanie.
 
 ### Uruchomienie projektu:
 <ul>
