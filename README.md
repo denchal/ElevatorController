@@ -69,13 +69,8 @@ Testowałem również dodatkową optymalizację w postaci liczenia ilości zatrz
 
 ### Kilka zrzutów ekranu:
 
-Widok okna programu zaraz po uruchomieniu:<br>
-[uruchomienie](..%2F..%2FDesktop%2Furuchomienie.png)<br>
-Widok okna programu po włączeniu automatycznej symulacji:<br>
-[praca](..%2F..%2FDesktop%2Fpraca.png)<br>
-Widok okna programu po włączeniu ręcznej symulacji:<br>
-[reczne0](..%2F..%2FDesktop%2Freczne0.png)<br>
-Widok okna programu po wprowadzeniu polecenia 0 3:<br>
-[reczne1](..%2F..%2FDesktop%2Freczne1.png)<br>
-Widok okna dialogowego do wyboru pliku csv:<br>
-[csv](..%2F..%2FDesktop%2Fcsv.png)<br>
+[Widok okna programu zaraz po uruchomieniu](img/uruchomienie.png)<br>
+[Widok okna programu po włączeniu automatycznej symulacji](img/praca.png)<br>
+[Widok okna programu po włączeniu ręcznej symulacji](img/reczne0.png)<br>
+[Widok okna programu po wprowadzeniu polecenia 0 3](img/reczne1.png)<br>
+[Widok okna dialogowego do wyboru pliku csv](img/csv.png)<br>
