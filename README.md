@@ -52,7 +52,8 @@ Błędnie wprowadzone manualne zapytanie jest odrzucane - pole nie jest zerowane
 ### Złożoność i optymalizacja:
 Algorytm w każdej iteracji wykonuje (ilość wind)x(ilość aktualnych stopów i-tej windy)x(ilość zapytań w iteracji) kroków co w zupełności wystarcza na obsłużenie 16, a nawet większej ilości wind.
 Warto zauważyć, że ilość kroków nie jest zależna od ilości pięter, co umożliwia dobre skalowanie jeżeli chodzi o wysokość budynku.
-Prawdopodobnie istnieją lepsze algorytmy optymalizujące kolejkowanie wind - dobrym pomysłem w rzeczywistym scenariuszu mogłoby być użycie Constraint Programming na przykład w języku MiniZinc, z uwagi na niewielką ilość danych do przetworzenia algorytm szybko znalazłby najoptymalniejsze rozwiązanie.
+Prawdopodobnie istnieją lepsze algorytmy optymalizujące kolejkowanie wind - dobrym pomysłem w rzeczywistym scenariuszu mogłoby być użycie Constraint Programming na przykład w języku MiniZinc, z uwagi na niewielką ilość danych do przetworzenia algorytm szybko znalazłby najoptymalniejsze rozwiązanie. <br>
+Testowałem również dodatkową optymalizację w postaci liczenia ilości zatrzymań które wykona winda zanim dotrze na wołające piętro i dodawania ich (pomnożonych razy 3) do dystansu, ale z moich obserwacji wynika, że nie usprawnia to automatycznego działania, więc zrezygnowałem z tego sposobu.
 
 ### Uruchomienie projektu:
 <ul>
