@@ -84,7 +84,7 @@ public class Elevator {
         if (!isBeingBoarded) {
             if (!route.isEmpty()) {
                 if (currentDirection == Direction.EITHER) {
-                    if (route.getFirst() > currentFloor) {
+                    if (route.get(0) > currentFloor) {
                         currentDirection = Direction.UP;
                     }
                     else {
