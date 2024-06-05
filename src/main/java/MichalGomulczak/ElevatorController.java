@@ -29,20 +29,25 @@ public class ElevatorController {
             int minDistance = Integer.MAX_VALUE;
             Elevator closestElevator = null;
             int i = req.floor();
-            if (counts[i] < 1) {
-                Direction requestedDirection = req.direction();
+            try {
+                if (counts[i] < 1) {
+                    Direction requestedDirection = req.direction();
 
-                for (Elevator elevator : elevators) {
-                    int distance = getDistance(elevator, requestedDirection, i);
+                    for (Elevator elevator : elevators) {
+                        int distance = getDistance(elevator, requestedDirection, i);
 
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        closestElevator = elevator;
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closestElevator = elevator;
+                        }
+                    }
+                    if (closestElevator != null && minDistance != 0) {
+                        closestElevator.addToRoute(i);
                     }
                 }
-                if (closestElevator != null && minDistance != 0) {
-                    closestElevator.addToRoute(i);
-                }
+            }
+            catch (ArrayIndexOutOfBoundsException ignored) {
+
             }
         }
     }
