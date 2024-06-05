@@ -3,15 +3,15 @@ package MichalGomulczak;
 import java.util.*;
 
 public class ElevatorController {
-    private List<Elevator> elevators;
-    private int maxFloor;
+    private final List<Elevator> elevators;
+    private final int maxFloor;
 
     public ElevatorController(int size, int numOfFloors) {
-        this.elevators = new ArrayList<Elevator>(size);
+        this.elevators = new ArrayList<>(size);
         this.maxFloor = numOfFloors-1;
 
         for (int i = 0; i < size; i++) {
-            elevators.add(new Elevator(i,0, this));
+            elevators.add(new Elevator(i,0));
         }
     }
 
@@ -28,9 +28,9 @@ public class ElevatorController {
         for (Request req : input) {
             int minDistance = Integer.MAX_VALUE;
             Elevator closestElevator = null;
-            int i = req.getFloor();
-            if (counts[i] < 2) {
-                Direction requestedDirection = req.getDirection();
+            int i = req.floor();
+            if (counts[i] < 1) {
+                Direction requestedDirection = req.direction();
 
                 for (Elevator elevator : elevators) {
                     int distance = getDistance(elevator, requestedDirection, i);
@@ -51,8 +51,8 @@ public class ElevatorController {
         int[] counts = new int[maxFloor+1];
         for (Elevator elevator : elevators) {
             List<Integer> route = elevator.getRoute();
-            for (int i = 0; i < route.size(); i++) {
-                counts[route.get(i)]++;
+            for (Integer integer : route) {
+                counts[integer]++;
             }
         }
         return counts;
@@ -61,12 +61,13 @@ public class ElevatorController {
     private static int getDistance(Elevator elevator, Direction requestedDirection, int i) {
         int distance;
         Direction elevatorDirection = elevator.getCurrentDirection();
-
-        if ((elevatorDirection == Direction.EITHER || elevatorDirection == requestedDirection) && elevator.getCurrentDestination() >= i) {
-            distance = Math.abs(elevator.getCurrentFloor() - i) ;
+        int currentDestination = elevator.getCurrentDestination();
+        int currentFloor = elevator.getCurrentFloor();
+        if ((elevatorDirection == Direction.EITHER || elevatorDirection == requestedDirection) && currentDestination >= i) {
+            distance = Math.abs(currentFloor - i);
         }
         else {
-            distance = Math.abs(elevator.getCurrentDestination() - elevator.getCurrentFloor()) + Math.abs(elevator.getCurrentDestination() - i);
+            distance = Math.abs(currentDestination - currentFloor) + Math.abs(currentDestination - i);
         }
         return distance;
     }
@@ -79,8 +80,8 @@ public class ElevatorController {
 
     public void handleInElevatorInputs(List<InteriorRequest> input) {
         for (InteriorRequest request : input) {
-            Elevator elevator = elevators.get(request.getElevator());
-            elevator.addToRoute(request.getFloor());
+            Elevator elevator = elevators.get(request.elevator());
+            elevator.addToRoute(request.floor());
         }
     }
 }

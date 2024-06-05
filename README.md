@@ -6,9 +6,9 @@ Request jest zapytaniem zewnętrznym i odpowiada wciśnięciu przycisku chęci j
 InteriorRequest jest zapytaniem wewnętrznym, kierowanym do konkretnej windy i wyrażający chęć jazdy na konkretne piętro. <br>
 
 Kontroler windy stara się rozdzielić pracę wind tak, aby zminimalizować czas oczekiwania przez klienta na przybycie windy po otrzymaniu zapytania typu Request. <br>
-Robi to poprzez znalezienie windy która jest najbliżej piętra przywołującego, z zachowaniem pewnych reguł:
+Robi to poprzez znalezienie windy, która jest najbliżej piętra przywołującego, z zachowaniem pewnych reguł:
 <ul>
-  <li>Jeżeli winda nie ma żadnego celu lub jedzie w tym samym kierunku w którym chce jechać osoba przywołująca to <br> dystans = |aktualne piętro - piętro przywołujące|</li>
+  <li>Jeżeli winda nie ma żadnego celu lub jedzie w tym samym kierunku, w którym chce jechać osoba przywołująca to <br> dystans = |aktualne piętro - piętro przywołujące|</li>
   <li>W przeciwnym wypadku (winda jedzie w przeciwnym kierunku) <br> dystans = |aktualne piętro - piętro docelowe| + |piętro docelowe - piętro przywołujące|</li>
   <li>Wybierana jest winda z najmniejszym dystansem</li>
 </ul>
@@ -22,7 +22,7 @@ Są dwa typy symulacji: <br>
   <li>W pełni manualna, w której jedyne zapytania są wprowadzane przez użytkownika. Wejście obsługuje dwa typy zapytań: <br>
   <ul>
     <li>numer windy (zaczynając od 0) [spacja] piętro docelowe - InteriorRequest, nieoptymalizowany</li>
-    <li>kierunek w którym chcemy się poruszać [spacja] piętro przywołujące - Request, optymalizowany</li>
+    <li>kierunek, w którym chcemy się poruszać [spacja] piętro przywołujące - Request, optymalizowany</li>
   </ul>
   </li>
 </ul>
@@ -34,24 +34,24 @@ Ilość pięter (maksymalne piętro to ilość pięter - 1), Ilość wind (numer
 Niżej znajdują się dwa przyciski służące do uruchamiania różnych typów symulacji. <br>
 Na samym dole znajduje się pole tekstowe służące do obsługi trybu manualnego, wejścia można potwierdzać zarówno klawiszem Enter jak i przyciskiem znajdującym się obok. Gdy to pole jest puste wyświetla się podpowiedź.
 
-Na górze ekranu po uruchomieniu symualcji będzie wyświetlała się tablica, pokazująca aktualny stan każdej z wind oraz piętro na którym się znajduje. <br>
+Na górze ekranu po uruchomieniu symualacji będzie wyświetlała się tablica, pokazująca aktualny stan każdej z wind oraz piętro, na którym się znajduje. <br>
 Kolor windy reprezentuje jej stan: <br>
 <ul>
-  <li>${\color{green}zielony}$ to winda jadąca do góry, <br></li>
-  <li>${\color{red}czerwony}$ to winda jadąca w dół, <br></li>
-  <li>${\color{yellow}żółty}$ to winda która aktualnie ma otwarte drzwi i pasażerowie mogą wsiadać i wysiadać, <br></li>
-  <li>${\color{blue}niebieski}$ to winda która nie ma aktualnie zajęcia.<br></li>
+  <li>zielony to winda jadąca do góry, <br></li>
+  <li>czerwony to winda jadąca w dół, <br></li>
+  <li>żółty to winda, która aktualnie ma otwarte drzwi i pasażerowie mogą wsiadać i wysiadać, <br></li>
+  <li>niebieski to winda, która nie ma aktualnie zajęcia.<br></li>
 </ul>
 Domyślnie krok symulacji jest ustawiony na 100ms, a czas oczekiwania na piętrze na 300ms. Te wartości mogą się zmieniać w zależności od ilości pięter oraz wind.
 
 ### Obsługa błędnych wejść wprowadzonych przez użytkownika:
-Jeżeli użytkownik wprowadzi błędne dane w którymkolwiek z 2 pierwszych pól odpowiedzialnych za parametry symulacji symulacja nie wystartuje. <br>
+Jeżeli użytkownik wprowadzi błędne dane w którymkolwiek z 2 pierwszych pól odpowiedzialnych za parametry symulacji to symulacja nie wystartuje. <br>
 W przypadku błędnie wprowadzonego pola ilości automatycznych zapytań na iterację tylko symulacja manualna wystartuje, a automatyczna nie. <br>
 Błędnie wprowadzone manualne zapytanie jest odrzucane - pole nie jest zerowane.
 
 ### Złożoność i optymalizacja:
-Algorytm w każdej iteracji wykonuje (ilość wind)x(ilość aktualnych stopów i-tej windy)x(ilość zapytań w iteracji) kroków co w zupełności wystarcza na obsłużenie 16, a nawet większej ilości wind.
-Warto zauważyć, że ilość kroków nie jest zależna od ilości pięter, co umożliwia dobre skalowanie jeżeli chodzi o wysokość budynku.
+Algorytm w każdej iteracji wykonuje (ilość wind)x(ilość aktualnych stopów i-tej windy)x(ilość zapytań w iteracji) kroków co w zupełności wystarcza na obsłużenie 16, a nawet większej ilości wind. <br>
+Warto zauważyć, że ilość kroków nie jest zależna od ilości pięter, co umożliwia dobre skalowanie jeżeli chodzi o wysokość budynku. <br>
 Prawdopodobnie istnieją lepsze algorytmy optymalizujące kolejkowanie wind - dobrym pomysłem w rzeczywistym scenariuszu mogłoby być użycie Constraint Programming na przykład w języku MiniZinc, z uwagi na niewielką ilość danych do przetworzenia algorytm szybko znalazłby najoptymalniejsze rozwiązanie. <br>
 Testowałem również dodatkową optymalizację w postaci liczenia ilości zatrzymań które wykona winda zanim dotrze na wołające piętro i dodawania ich (pomnożonych razy 3) do dystansu, ale z moich obserwacji wynika, że nie usprawnia to automatycznego działania, więc zrezygnowałem z tego sposobu.
 

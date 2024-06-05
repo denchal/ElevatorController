@@ -1,21 +1,21 @@
 package MichalGomulczak;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
-import java.util.StringTokenizer;
 
 public class ElevatorSimulation extends JFrame {
-    private JTextField floorsField;
-    private JTextField elevatorsField;
-    private JTextField requestsField;
-    private JTextField manualRequestsField;
-    private JPanel gridPanel;
+    private final JTextField floorsField;
+    private final JTextField elevatorsField;
+    private final JTextField requestsField;
+    private final JTextField manualRequestsField;
+    private final JPanel gridPanel;
     private ElevatorController elevatorController;
     private Timer timer;
-    private List<ElevatorPanel> elevatorPanels;
+    private final List<ElevatorPanel> elevatorPanels;
+    private List<String> csvEntries;
 
     public ElevatorSimulation() {
         this.elevatorPanels = new ArrayList<>();
@@ -40,20 +40,20 @@ public class ElevatorSimulation extends JFrame {
         inputPanel.add(requestsField);
 
         JButton startButton = new JButton("Start With Automatic Inputs");
-        startButton.addActionListener(e -> startSimulation(Integer.parseInt(requestsField.getText())));
+        startButton.addActionListener(e -> startSimulation(false));
         inputPanel.add(startButton);
 
         JButton startManualButton = new JButton("Start With Manual Inputs");
-        startManualButton.addActionListener(e -> startSimulation(0));
+        startManualButton.addActionListener(e -> startSimulation(true));
         inputPanel.add(startManualButton);
 
         manualRequestsField = new MyTextField();
-        manualRequestsField.addActionListener(e -> handleManualInput());
+        manualRequestsField.addActionListener(e -> handleManualInput(null));
         inputPanel.add(manualRequestsField);
 
 
-        JButton manualInputButton = new JButton("Send Input");
-        manualInputButton.addActionListener(e -> handleManualInput());
+        JButton manualInputButton = new JButton("Open Inputs From CSV");
+        CSVFileChooser csvFileChooser = new CSVFileChooser(manualInputButton, this);
         inputPanel.add(manualInputButton);
 
         add(inputPanel, BorderLayout.SOUTH);
@@ -63,8 +63,10 @@ public class ElevatorSimulation extends JFrame {
         add(gridPanel, BorderLayout.CENTER);
     }
 
-    private void handleManualInput() {
-        String input = manualRequestsField.getText();
+    public void handleManualInput(String input) {
+        if (input == null) {
+            input = manualRequestsField.getText();
+        }
         StringTokenizer st = new StringTokenizer(input, " ");
 
         if (st.countTokens() < 2) {
@@ -95,8 +97,16 @@ public class ElevatorSimulation extends JFrame {
             }
             manualRequestsField.setText("");
         } catch (NumberFormatException ignored) {
-
+            System.out.println("NumberFormatException");
         }
+    }
+
+    public void setCSVInput(List<String> inputs) {
+        this.csvEntries = inputs;
+    }
+
+    public List<String> getCsvEntries() {
+        return csvEntries;
     }
 
     private void stopTimer() {
@@ -105,11 +115,21 @@ public class ElevatorSimulation extends JFrame {
         }
     }
 
-    private void startSimulation(int requests) {
+    private void startSimulation(boolean isManual) {
         stopTimer();
         elevatorPanels.clear();
-        int floors = Integer.parseInt(floorsField.getText());
-        int elevators = Integer.parseInt(elevatorsField.getText());
+        int floors, elevators, requests = 0;
+        try {
+            floors = Integer.parseInt(floorsField.getText());
+            elevators = Integer.parseInt(elevatorsField.getText());
+            if (!isManual) {
+                requests = Integer.parseInt(requestsField.getText());
+            }
+        }
+        catch (NumberFormatException ignored) {
+            System.out.println("NumberFormatException");
+            return;
+        }
         elevatorController = new ElevatorController(elevators, floors);
 
 
@@ -122,8 +142,15 @@ public class ElevatorSimulation extends JFrame {
         gridPanel.revalidate();
         gridPanel.repaint();
 
-        timer = new Timer(100, e -> updateSimulation(requests));
-        timer.start();
+        int finalRequests = requests;
+        if (isManual) {
+            timer = new Timer(60, e -> updateManualSimulation());
+            timer.start();
+        }
+        else {
+            timer = new Timer(60, e -> updateSimulation(finalRequests));
+            timer.start();
+        }
     }
 
     private void updateSimulation(int requests) {
@@ -143,6 +170,18 @@ public class ElevatorSimulation extends JFrame {
         elevatorController.handleOnFloorInputs(inputs);
         elevatorController.step();
 
+        for (int i = 0; i < elevatorController.getElevators().size(); i++) {
+            Elevator elevator = elevatorController.getElevators().get(i);
+            ElevatorPanel panel = elevatorPanels.get(i);
+            panel.setCurrentFloor(elevator.getCurrentFloor());
+        }
+    }
+
+    private void updateManualSimulation() {
+        Thread csvReading = new Thread(new CSVHandler(this));
+        csvReading.start();
+
+        elevatorController.step();
         for (int i = 0; i < elevatorController.getElevators().size(); i++) {
             Elevator elevator = elevatorController.getElevators().get(i);
             ElevatorPanel panel = elevatorPanels.get(i);

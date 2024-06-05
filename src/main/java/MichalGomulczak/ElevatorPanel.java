@@ -5,8 +5,8 @@ import java.awt.*;
 
 class ElevatorPanel extends JPanel {
     private int currentFloor;
-    private int maxFloor;
-    private Elevator elevator;
+    private final int maxFloor;
+    private final Elevator elevator;
 
     public ElevatorPanel(int maxFloor, Elevator elevator) {
         this.maxFloor = maxFloor;

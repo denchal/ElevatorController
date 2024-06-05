@@ -8,23 +8,20 @@ import java.util.List;
 public class Elevator {
     private final int elevatorId;
     private int currentFloor;
-    private List<Integer> route;
+    private final List<Integer> route;
     private boolean isBeingBoarded;
-    private ElevatorController controller;
     private Direction currentDirection;
     private int currentDestination;
     private int timeWaited;
 
-    public Elevator(int elevatorId, int currentFloor, ElevatorController controller) {
+    public Elevator(int elevatorId, int currentFloor) {
         this.elevatorId = elevatorId;
         this.currentFloor = currentFloor;
         this.route = new ArrayList<>();
         this.isBeingBoarded = false;
-        this.controller = controller;
         this.currentDirection = Direction.UP;
         this.currentDestination = 0;
         this.timeWaited = 0;
-
     }
 
     public int getElevatorId() {
@@ -53,7 +50,10 @@ public class Elevator {
                 "elevatorId=" + elevatorId +
                 ", currentFloor=" + currentFloor +
                 ", route=" + route +
+                ", isBeingBoarded=" + isBeingBoarded +
                 ", currentDirection=" + currentDirection +
+                ", currentDestination=" + currentDestination +
+                ", timeWaited=" + timeWaited +
                 '}';
     }
 
