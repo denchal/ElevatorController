@@ -32,7 +32,7 @@ Interfejs graficzny jest realizowany przy pomocy biblioteki Swing oraz Awt. <br>
 Na dole ekranu znajdują się pola tekstowe odpowiednio: <br>
 Ilość pięter (maksymalne piętro to ilość pięter - 1), Ilość wind (numerowanych od 0), ilość automatycznych zapytań na iterację<br>
 Niżej znajdują się dwa przyciski służące do uruchamiania różnych typów symulacji. <br>
-Na samym dole znajduje się pole tekstowe służące do obsługi trybu manualnego, wejścia można potwierdzać zarówno klawiszem Enter jak i przyciskiem znajdującym się obok. Gdy to pole jest puste wyświetla się podpowiedź.
+Na samym dole znajduje się pole tekstowe służące do obsługi trybu manualnego, wejścia można potwierdzać klawiszem Enter. Gdy to pole jest puste wyświetla się podpowiedź.
 
 Na górze ekranu po uruchomieniu symualacji będzie wyświetlała się tablica, pokazująca aktualny stan każdej z wind oraz piętro, na którym się znajduje. <br>
 Kolor windy reprezentuje jej stan: <br>
