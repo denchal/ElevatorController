@@ -43,6 +43,7 @@ Kolor windy reprezentuje jej stan: <br>
   <li>niebieski to winda, która nie ma aktualnie zajęcia.<br></li>
 </ul>
 Domyślnie krok symulacji jest ustawiony na 100ms, a czas oczekiwania na piętrze na 300ms. Te wartości mogą się zmieniać w zależności od ilości pięter oraz wind.
+Dodatkowo, co 25 kroków raportowany jest status każdej z wind - wyświetla się to w konsoli.
 
 ### Obsługa pliku CSV:
 Dodałem obsługę plików CSV jako plików z danymi. Powinny one zawierać takie same zapytania jak wpisywanie ręczne, oddzielone przecinkami np.: <br>
